@@ -10,10 +10,9 @@ export default function InputBar({ category, fetchNotes }) {
     e.preventDefault();
 
     axios
-      .post(`http://localhost:5000/api/notes`, {
+      .post(`https://notes-r04u.onrender.com/api/notes`, {
         content,
         category: category._id,
-      
       })
       .then((res) => {
         console.log(res.data);

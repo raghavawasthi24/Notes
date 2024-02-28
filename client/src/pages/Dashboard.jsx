@@ -23,7 +23,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/category`)
+      .get(`https://notes-r04u.onrender.com/api/category`)
       .then((res) => {
         console.log(res.data);
         setCategory(res.data);
@@ -41,7 +41,10 @@ export default function Dashboard() {
         keyword: makeKeyboard(prevFormValues.category),
       };
       axios
-        .post(`http://localhost:5000/api/category`, updatedFormValues)
+        .post(
+          `https://notes-r04u.onrender.com/api/category`,
+          updatedFormValues
+        )
         .then((res) => {
           console.log(res.data);
           setCategory((prev) => [...prev, res.data]);
@@ -58,7 +61,7 @@ export default function Dashboard() {
     console.log(category);
     setActiveCategory(category);
     axios
-      .get(`http://localhost:5000/api/notes/${category._id}`)
+      .get(`https://notes-r04u.onrender.com/api/notes/${category._id}`)
       .then((res) => {
         console.log(res.data);
         setNotes(res.data);
