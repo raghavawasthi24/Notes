@@ -15,7 +15,7 @@ export default function Notes({ notes, category }) {
         return (
           <div
             key={index}
-            className="p-2 my-2 border border-gray-300 rounded flex flex-col"
+            className="p-2 my-2 border border-gray-300 rounded flex flex-col bg-white shadow-md m-4"
           >
             <h1 className="text-xl font-bold">{note.content}</h1>
             <p className="w-fit self-end">{formattedDate}</p>
