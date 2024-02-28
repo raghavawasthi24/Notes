@@ -5,6 +5,7 @@ import Notes from "../components/Notes";
 import axios from "axios";
 import { colors } from "../constant";
 import { makeKeyboard } from "../actions";
+import Blank from "../components/Blank";
 
 export default function Dashboard() {
   const [category, setCategory] = useState([]);
@@ -74,10 +75,15 @@ export default function Dashboard() {
         setpopUp={setpopUp}
         fetchNotes={fetchNotes}
       />
-      <div className="flex flex-col flex-1 relative">
-        <Notes notes={notes} category={activeCategory} />
-        <InputBar category={activeCategory} fetchNotes={fetchNotes}/>
-      </div>
+
+      {activeCategory.category ? (
+        <div className="flex flex-col flex-1 relative">
+          <Notes notes={notes} category={activeCategory} />
+          <InputBar category={activeCategory} fetchNotes={fetchNotes} />
+        </div>
+      ) : (
+        <Blank />
+      )}
 
       {popUp && (
         <div className="bg-white absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-md">

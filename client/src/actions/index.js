@@ -1,13 +1,18 @@
-export function convertDateTime(dateTimeString) {
+export function formatDateTime(dateTimeString) {
   const dateTime = new Date(dateTimeString);
-  const date = dateTime.toLocaleDateString("en-US");
-  const time = dateTime.toLocaleTimeString("en-US");
-  return { date, time };
+  const options = {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  };
+  return dateTime.toLocaleDateString("en-US", options);
 }
 
 export function makeKeyboard(inputString) {
-
-    console.log(inputString)
+  console.log(inputString);
   // Split the input string into words
   const words = inputString.trim().split(/\s+/);
 
@@ -20,6 +25,6 @@ export function makeKeyboard(inputString) {
   // Concatenate the first letters
   const keyboard = `${firstLetter}${lastLetter}`;
 
-  console.log(keyboard)
+  console.log(keyboard);
   return keyboard.toUpperCase(); // Convert to uppercase if needed
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { convertDateTime } from "../actions";
+import { formatDateTime } from "../actions";
 
 export default function Notes({ notes, category }) {
   return (
@@ -11,16 +11,14 @@ export default function Notes({ notes, category }) {
         {category.category}
       </p>
       {notes.map((note, index) => {
-        const { date, time } = convertDateTime(note.createdAt);
+        const formattedDate = formatDateTime(note.createdAt);
         return (
           <div
             key={index}
             className="p-2 my-2 border border-gray-300 rounded flex flex-col"
           >
             <h1 className="text-xl font-bold">{note.content}</h1>
-            <p className="w-fit self-end">
-              {date} {time}
-            </p>
+            <p className="w-fit self-end">{formattedDate}</p>
           </div>
         );
       })}
