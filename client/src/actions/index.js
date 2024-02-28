@@ -11,7 +11,7 @@ export function formatDateTime(dateTimeString) {
   return dateTime.toLocaleDateString("en-US", options);
 }
 
-export function makeKeyboard(inputString) {
+export function makekeyword(inputString) {
   console.log(inputString);
   // Split the input string into words
   const words = inputString.trim().split(/\s+/);
@@ -23,8 +23,8 @@ export function makeKeyboard(inputString) {
   const lastLetter = words.length > 1 ? words[words.length - 1][0] : "";
 
   // Concatenate the first letters
-  const keyboard = `${firstLetter}${lastLetter}`;
+  const keyword = `${firstLetter}${lastLetter}`;
 
-  console.log(keyboard);
-  return keyboard.toUpperCase(); // Convert to uppercase if needed
+  console.log(keyword);
+  return keyword.toUpperCase(); // Convert to uppercase if needed
 }

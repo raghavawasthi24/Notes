@@ -4,7 +4,7 @@ import InputBar from "../components/InputBar";
 import Notes from "../components/Notes";
 import axios from "axios";
 import { colors } from "../constant";
-import { makeKeyboard } from "../actions";
+import { makekeyword } from "../actions";
 import Blank from "../components/Blank";
 
 export default function Dashboard() {
@@ -33,28 +33,27 @@ export default function Dashboard() {
       });
   }, []);
 
-  const addCategory = () => {
-    console.log(formValues);
-    setFormValues((prevFormValues) => {
+  const addCategory = (e) => {
+    e.preventDefault();
+    console.log("calling");
+    
       const updatedFormValues = {
-        ...prevFormValues,
-        keyword: makeKeyboard(prevFormValues.category),
+        ...formValues,
+        keyword: makekeyword(formValues.category),
       };
-      axios
-        .post(
-          `https://notes-r04u.onrender.com/api/category`,
-          updatedFormValues
-        )
-        .then((res) => {
-          console.log(res.data);
-          setCategory((prev) => [...prev, res.data]);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      setpopUp(false);
-      return updatedFormValues;
-    });
+    
+    
+
+    axios
+      .post("https://notes-r04u.onrender.com/api/category", updatedFormValues)
+      .then((res) => {
+        console.log(res.data);
+        setCategory((prev) => [...prev, res.data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setpopUp(false);
   };
 
   const fetchNotes = (category) => {
