@@ -10,13 +10,14 @@ export default function InputBar({ category, fetchNotes }) {
     e.preventDefault();
 
     axios
-      .post(`https://notes-r04u.onrender.com/api/notes`, {
+      .post(`${import.meta.env.VITE_API_URL}/api/notes`, {
         content,
         category: category._id,
       })
       .then((res) => {
         console.log(res.data);
         fetchNotes(category);
+        setContent("");
       })
       .catch((err) => {
         console.log(err);

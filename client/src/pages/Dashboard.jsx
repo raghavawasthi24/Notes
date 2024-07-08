@@ -23,7 +23,7 @@ export default function Dashboard() {
 
   useEffect(() => {
     axios
-      .get(`https://notes-r04u.onrender.com/api/category`)
+      .get(`${import.meta.env.VITE_API_URL}/api/category`)
       .then((res) => {
         console.log(res.data);
         setCategory(res.data);
@@ -36,19 +36,18 @@ export default function Dashboard() {
   const addCategory = (e) => {
     e.preventDefault();
     console.log("calling");
-    
-      const updatedFormValues = {
-        ...formValues,
-        keyword: makekeyword(formValues.category),
-      };
-    
-    
+
+    const updatedFormValues = {
+      ...formValues,
+      keyword: makekeyword(formValues.category),
+    };
 
     axios
-      .post("https://notes-r04u.onrender.com/api/category", updatedFormValues)
+      .post(`${import.meta.env.VITE_API_URL}/api/category`, updatedFormValues)
       .then((res) => {
         console.log(res.data);
         setCategory((prev) => [...prev, res.data]);
+        setFormValues(initialValue);
       })
       .catch((err) => {
         console.log(err);
@@ -60,7 +59,7 @@ export default function Dashboard() {
     console.log(category);
     setActiveCategory(category);
     axios
-      .get(`https://notes-r04u.onrender.com/api/notes/${category._id}`)
+      .get(`${import.meta.env.VITE_API_URL}/api/notes/${category._id}`)
       .then((res) => {
         console.log(res.data);
         setNotes(res.data);
@@ -108,7 +107,9 @@ export default function Dashboard() {
               {colors.map((color, index) => (
                 <div
                   key={index}
-                  className="w-8 h-8 rounded-full cursor-pointer"
+                  className={`w-8 h-8 rounded-full cursor-pointer ${
+                    formValues.color === color ? "border-4 border-black" : ""
+                  }`}
                   style={{ backgroundColor: color }}
                   onClick={() => setFormValues({ ...formValues, color: color })}
                 ></div>
